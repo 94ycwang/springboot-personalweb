@@ -15,7 +15,7 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 
 ### 2. Backend
 * Core - SpringBoot 2.3.1
-* Building project - jdk 1.8, Maven 4
+* Building project - JDK 1.8, Maven 4
 * Persistence layer - JPA
 * Template - Thymeleaf 
 * Encryption - MD5
@@ -24,7 +24,8 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 ### 3. Database
 * MySQL
 
-## Demand Analysis
+## Project Structure
+
 
 
 ## Database Design
