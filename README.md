@@ -42,6 +42,7 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 <br/>
 <br/>
 <br/>
+<br/>
 ## IV. Layered Architecture
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/layer.jpg)
 <br/>
