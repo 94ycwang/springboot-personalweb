@@ -28,4 +28,12 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
 
 
-## Database Design
+## Entity/Database Design
+### 1. Entity class
+* Blog 
+* Type
+* Tag
+* User
+* Comment
+* Vote
+### 2. Entity relationship diagram
