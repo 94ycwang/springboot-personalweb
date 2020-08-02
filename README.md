@@ -25,7 +25,7 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * MySQL
 
 ## Project Structure
-![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/ERdiagram.jpg)
+![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
 
 
 ## Entity/Database Design
@@ -37,4 +37,4 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * Comment
 * Vote
 ### 2. Entity relationship diagram
-![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
+![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/ERdiagram.jpg)
