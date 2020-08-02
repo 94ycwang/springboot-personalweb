@@ -3,7 +3,7 @@
 
 Access: [http://ycwang.info/](http://ycwang.info/)
 
-## Tech Stack
+## I. Tech Stack
 
 ### 1. Frontend
 * JS framwork - JQuery
@@ -24,11 +24,11 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 ### 3. Database
 * MySQL
 
-## Project Structure
+## II. Project Structure
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
 
 
-## Entity/Database Design
+## III. Entity/Database Design
 ### 1. Entity class
 * Blog 
 * Type
@@ -38,3 +38,6 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * Vote
 ### 2. Entity relationship diagram
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/ERdiagram.jpg)
+
+## IV. Application Layers
+
