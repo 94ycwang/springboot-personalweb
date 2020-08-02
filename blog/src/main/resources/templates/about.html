@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="_fragment::head(~{::title})">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/me.css" />
+  </head>
+
+  <body>
+    <!-- Navigation-->
+    <nav th:replace="_fragment::menu(5)" class="ui inverted attached segment m-padded-tb m-shadow-small">
+      <div class="ui container">
+        <div class="ui inverted stackable secondary menu">
+          <h2 class="ui teal header item"> Y.W's Blog </h2>
+          <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i> Home</a>
+          <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i> Categories</a>
+          <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i> Tags</a>
+          <a href="#" class="m-item item m-mobile-hide"><i class="archive icon"></i> Archive</a>
+          <a href="#" class="active m-item item m-mobile-hide"><i class="info icon"></i> About Me</a>
+          <div class ="right m-item item m-mobile-hide">
+            <div class ="ui inverted transparent input">
+                <input type ="text" placeholder="Search..."></input>
+                <i class="search link icon"></i>
+            </div>    
+          </div>
+          <div class ="right m-item item m-mobile-hide">
+            <div class="right menu">
+              <div class="ui dropdown m-item item m-mobile-hide">
+                <div class="text">
+                  <img src="../static/images/avatar_visitor.png" class="ui avatar image">
+                  Sign In
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a href="#" class="item">Admin Log In</a>
+                  <a href="#" class="item">Visitor Log In</a>
+                  <a href="#" class="item">Sign Up</a>
+                  <a href="#" class="item">Sign Out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="ui menu-toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+      </a>
+
+    </nav>
+
+    <!-- Content -->
+    <div class="m-container-small m-padded-tb-big">
+      <div class="ui container">
+        <div class="ui stackable grid">
+          <div class="eight wide column">
+            <br>
+            <br>
+            <br>
+            <img src="../static/images/avatar.png" th:src="@{/images/avatar.png}" alt="" class="rounded image">
+          </div>
+          <div class="eight wide column">
+            <div class="ui top attached segment">
+              <div class="ui header">About Me</div>
+            </div>
+            <div class="ui attached segment">
+              <p >- Knock knock.</p>
+              <p>- Who's there?</p>
+              <p>- Yuechun</p>
+              <p>- Yuechun who?</p>
+              <p>- Nope, Yuechun Wang.</p>
+            </div>
+            <div class="ui attached segment">
+              <div class="ui orange basic left pointing label">Coding</div>
+              <div class="ui orange basic left pointing label">Video Editing</div>
+              <div class="ui orange basic left pointing label">Science</div>
+              <div class="ui orange basic left pointing label">Swimming</div>
+            </div>
+            <div class="ui attached segment">
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">JAVA</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">Python</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">JavaScript</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">HTML/CSS</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">C</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">MATLAB</div>
+              <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
+            </div>
+            <div class="ui bottom attached segment">
+              <div class="ui center aligned">
+                <a href="https://github.com/94ycwang" target="_blank"><i class="ui large black basic github icon"></i></a>
+                <a href="https://www.linkedin.com/in/yuechun-w-0638b0152/" target="_blank"><i class="ui large blue basic linkedin icon"></i></a>
+                <a href="https://www.instagram.com/puremoonw/" target="_blank"><i class="ui large pink basic instagram icon"></i></a>
+                <a><i class="ui large green basic wechat icon"></i></a>
+              </div>
+            </div>
+            <div class="ui wechat-qr flowing popup transition hidden">
+              <img src="../static/images/wechat.JPG" th:src="@{/images/wechat.JPG}" alt="" class="ui rounded iamge" style="width: 100px">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Footer-->
+    <footer th:replace="_fragment::footer" class= "ui inverted vertical segment m-padded-tb-massive">
+        <div class ="ui center aligned container">
+            <div class ="ui inverted divided stackable grid">
+
+                <div class="three wide column">
+                  <div class="ui inverted link list">
+                    <div class="item">
+                      <img src="../static/images/wechat.JPG" alt="" class="ui rounded image" style ="width: 10em"></img>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="three wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Recent</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">test</a>
+                    <a href="#" class="item">test</a>
+                    <a href="#" class="item">test</a>
+                  </div>
+                </div>
+                <div class="three wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Contact</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">Email: yc.eleanor.wang@outlook.com</a>
+                    <a href="#" class="item"></a>
+                    <a href="#" class="item"></a>
+                  </div>
+                </div>
+                <div class="seven wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Yuechun Wang</h4>
+                  <p class="m-text-thin m-text-spaced m-opacity-min">This is my personal blog</p>
+                </div>
+
+          </div>
+        
+          <div class="ui inverted section divider"></div>
+          <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2019-2020 Yuechun Designed by Yuechun</p>
+      </div>
+    <br>
+    <br>
+    </footer>
+    <!--/*/<th:block th:replace="_fragment::script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+    <script>
+      $('.menu-toggle').click(function(){
+        $('.m-item').toggleClass('m-mobile-show');
+        $("p").toggleClass("main");
+      });
+      $('.ui.dropdown').dropdown({
+        on: 'hover'
+      });
+      $('.wechat').popup({
+        popup: $('.wechat-qr.popup'),
+        position:'bottom center'
+      });
+    </script>
+  </body>
+</html>

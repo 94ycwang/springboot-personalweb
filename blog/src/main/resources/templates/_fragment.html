@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:replace="${title}" ></title>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+    <!--Navigation-->
+    <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted stackable secondary menu">
+                <h2 class="ui teal header item"> Y.W's Blog </h2>
+                <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i> Home</a>
+                <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i> Categories</a>
+                <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i> Tags</a>
+                <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="archive icon"></i> Archives</a>
+                <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="info icon"></i> About Me</a>
+                <div class ="right m-item item m-mobile-hide">
+                    <form name="search" action ="#" th:action="@{/search}" method="post" target="_blank">
+                        <div class ="ui inverted icon input">
+                            <input type ="text" style="color:white; background-color:#333" name="query" placeholder="Search..." th:value="${query}">
+                            <i style="color:white" onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class ="right m-item item m-mobile-hide">
+                    <div class="right menu">
+                        <div class="ui dropdown m-item item m-mobile-hide">
+                            <div class="text">
+                                <img src="../static/images/avatar_visitor.png" th:if="${session.user != null}" th:src="@{${session.user.avatar}}" class="ui avatar image">
+                                <img src="../static/images/avatar_visitor.png" th:if="${session.user == null}" th:src="@{/images/avatar_visitor.png}" class="ui avatar image">
+                                <span th:unless="${session.user == null}" th:text="${session.user.nickname}"></span>
+                                <span th:unless="${session.user != null}">Sign In</span>
+                            </div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="#" th:href="@{/admin}" class="item">Admin Log In</a>
+                                <a href="#" th:href="@{/users}" class="item">Visitor Log In</a>
+                                <a href="#" th:href="@{/signup}" class="item">Sign Up</a>
+                                <a href="#" th:href="@{/logout}" class="item">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu-toggle black icon button m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <!--Footer-->
+    <footer th:fragment="footer" class= "ui inverted vertical segment m-padded-tb-massive">
+
+
+        <div class ="ui center aligned container">
+            <div class ="ui inverted divided stackable grid">
+                <div class="two wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/wechat.JPG"  th:src="@{/images/wechat.JPG}" class="ui rounded image" style ="width: 10em"></img>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="four wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">Vote - just for fun
+                        <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem" target="_blank"><i class="ui teal question circle outline icon"></i></a></h4>
+                    <div class="ui inverted link list">
+                        <div class="m-mobile-wide field m-margin-bottom-small">
+                            <div id="vote-container" th:fragment="voteRefresh">
+                                <input id="voteState" type="hidden"  th:value="${voted}">
+                                <div id="vote-form" class="ui inverted form" >
+                                    <div class="grouped fields" th:style ="${voted} ? 'display:none;':'display:inline-block;'">
+                                        <div class="field">
+                                            <div class="ui left aligned radio checkbox">
+                                                <input type="radio" name="vote" value="0">
+                                                <label class="m-text-thin m-opacity-tiny">P = NP</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui left aligned radio checkbox">
+                                                <input type="radio" name="vote" value="1">
+                                                <label class="m-text-thin m-opacity-tiny">P ≠ NP</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="vote-result" th:style ="${voted} ? 'display:inline-block;':'display:none;'">
+                                        <div class="extra">
+                                            <i class="check icon" th:classappend="${voteE} ? 'green'"></i>
+                                            P = NP  :   <span th:text="${e}">0</span> Votes
+                                        </div>
+                                        <br>
+                                        <div class="extra">
+                                            <i class="check icon" th:classappend="${voteNe} ? 'green'"></i>
+                                            P ≠ NP  :   <span th:text="${ne}">1</span> Votes
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <br>
+                                </div>
+                                <button type="button" id="vote-btn"  class="ui  button teal basic m-padded-tb-small" th:style ="${voted} ? 'display:none;':'display:inline-block;'">Vote</button>
+                                <button type="button" id="voted-btn" class="ui  button teal m-padded-tb-small" th:style ="${voted} ? 'display:inline-block;':'display:none;'">Voted</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">Contact</h4>
+                    <div class="ui inverted link list">
+                        <a href="mailto:yc.eleanor.wang@outlook.com" class="item" th:text="#{index.email}">yc.eleanor.wang@outlook.com</a>
+                        <br>
+                        <a class="item"><i class="ui inverted map pin icon"></i>Columbus, Ohio</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">Welcome to Y.W's Blog!</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-tiny">Hope that you're having fun visiting my website.</p>
+                    <p class="m-text-thin m-text-spaced m-opacity-tiny">Please comment below my blogs if you have any thoughts.</p>
+                </div>
+
+            </div>
+
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2020 Designed by Yuechun</p>
+        </div>
+        <br>
+        <br>
+    </footer>
+
+    <th:block th:fragment="script">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+        <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+        <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+        <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
+        <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+        <script th:inline="javascript">
+
+            $(document).on('click','#vote-btn',function(){
+                    if(!navigator.cookieEnabled) {
+                        document.getElementById("vote-btn").display = "none";
+                        alert("Please enable browser's Cookies to vote!")
+                    }
+                    else{
+                        var x = $("input[name='vote']:checked").val()
+                        if( x == null){
+                            x= "-1";
+                        }
+                        $("#vote-container").load(/*[[@{/vote}]]*/"",{
+                            "vote": x
+                        });
+                        document.getElementById("voted-btn").style.display = "inline";
+                        document.getElementById("vote-btn").style.display = "none";
+                    }
+                }
+            );
+            $(document).on('click','#voted-btn',function(){
+                    $("#vote-container").load(/*[[@{/vote}]]*/"",{
+                        "vote" : "-1"
+                    });
+                    document.getElementById("voted-btn").style.display = "none";
+                    document.getElementById("vote-btn").style.display = "inline";
+                }
+            );
+
+            $(function(){
+                $("#vote-container").load(/*[[@{/voteload}]]*/"",{});
+            });
+
+        </script>
+    </th:block>
+
+</body>
+</html>

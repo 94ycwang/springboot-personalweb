@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="admin/_fragment2::head(~{::title})">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comments | Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="../../static/css/me.css" />
+  </head>
+
+  <body>
+    <!-- Navigation-->
+    <nav th:replace="admin/_fragment2::menu(4)" class="ui inverted attached segment m-padded-tb m-shadow-small">
+      <div class="ui container">
+        <div class="ui inverted stackable secondary menu">
+          <h2 class="ui teal header item"> Blog Admin </h2>
+          <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i> Blogs</a>
+          <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i> Categories</a>
+          <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i> Tags</a>
+          <div class ="right m-item item m-mobile-hide">
+            <div class="right menu">
+              <div class="ui dropdown m-item item m-mobile-hide">
+                <div class="text">
+                  <img src="../../static/images/avatar_visitor.png" class="ui avatar image">
+                  puremoonw
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a href="" class="item">Log out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="ui menu-toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+      </a>
+    </nav>
+    <div class="ui attached pointing menu">
+      <div class="ui container">
+        <div class="right menu">
+          <a href="#"  th:href="@{/admin/comments}" class="teal active item">Management</a>
+        </div>
+      </div>  
+    </div>
+
+    <!-- Content -->
+    <div class="m-padded-tb-big">
+      <div class="ui container">
+        <table class="ui teal compact table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Create Time</th>
+              <th>Comment</th>
+              <th>Operation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each = "comment, iterStat: ${page.content}">
+              <td th:text="${iterStat.count}">1</td>
+              <td style="width: 180px;" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">1</td>
+              <td th:text="${comment.content}">Java</td>
+              <td style="width: 200px;">
+                <a href="#" th:href="@{/admin/comments/{id}/input(id=${comment.id})}" class="ui mini teal basic button">&nbsp;&nbsp; Edit &nbsp;&nbsp;</a>
+                <a href="#" th:href="@{/admin/comments/{id}/delete(id=${comment.id})}" class="ui mini red basic button">Delete</a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="6">
+                <div class="ui mini pagination menu">
+                  <a th:href="@{/admin/comments(page=${page.number}-1)}" class="item m-padded-tb-tiny" th:classappend="${page.first} ? 'disabled'"><<</a>
+                  <span class="item">
+                    Page&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="detail" th:text="${page.totalPages==0} ? 0 : ${page.number+1}"></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span th:text="${page.totalPages}"></span>
+                  </span>
+                  <a th:href="@{/admin/comments(page=${page.number}+1)}" class="item m-padded-tb-tiny" th:classappend="${page.last} ? 'disabled'">>> </a>
+                </div>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+          <i class="close icon"></i>
+          <div class="header" th:text="${message}">test</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Footer-->
+    <footer th:replace="admin/_fragment2::footer" class= "ui inverted vertical segment m-padded-tb-massive">
+        <div class ="ui center aligned container">
+            <div class ="ui inverted divided stackable grid">
+
+                <div class="three wide column">
+                  <div class="ui inverted link list">
+                    <div class="item">
+                      <img src="../../static/images/wechat.JPG" alt="" class="ui rounded image" style ="width: 10em"></img>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="three wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Recent</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">test</a>
+                    <a href="#" class="item">test</a>
+                    <a href="#" class="item">test</a>
+                  </div>
+                </div>
+                <div class="three wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Contact</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">Email: yc.eleanor.wang@outlook.com</a>
+                    <a href="#" class="item"></a>
+                    <a href="#" class="item"></a>
+                  </div>
+                </div>
+                <div class="seven wide column">
+                  <h4 class="ui inverted header m-text-thin m-text-spaced">Yuechun Wang</h4>
+                  <p class="m-text-thin m-text-spaced m-opacity-min">This is my personal blog</p>
+                </div>
+
+          </div>
+        
+          <div class="ui inverted section divider"></div>
+          <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2019-2020 Yuechun Designed by Yuechun</p>
+      </div>
+    <br>
+    <br>
+    </footer>
+    <!--/*/<th:block th:replace="admin/_fragment2::script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+    <script>
+      $('.menu-toggle').click(function(){
+        $('.m-item').toggleClass('m-mobile-show');
+        $("p").toggleClass("main");
+      });
+      
+      $('.ui.dropdown').dropdown({
+        on: 'hover'
+      });
+      $('.message .close')
+              .on('click', function() {
+                $(this)
+                        .closest('.message')
+                        .transition('fade')
+                ;
+              })
+      ;
+    </script>
+  </body>
+</html>
