@@ -37,3 +37,4 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * Comment
 * Vote
 ### 2. Entity relationship diagram
+![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/ERdiagram.jpg)
