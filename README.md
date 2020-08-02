@@ -36,4 +36,4 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * User
 * Comment
 * Vote
-### 2. Class diagram
+### 2. Entity relationship diagram
