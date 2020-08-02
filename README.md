@@ -23,9 +23,7 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 
 ### 3. Database
 * MySQL
-<br/>
-<br/>
-<br/>
+
 ## II. Project Structure
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
 <br/>
