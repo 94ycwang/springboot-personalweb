@@ -26,10 +26,9 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 
 ## II. Project Structure
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/projectstructure.jpg)
-
-
-
-
+<br/>
+<br/>
+<br/>
 ## III. Entity/Database Design
 ### 1. Entity class
 * Blog 
@@ -40,9 +39,10 @@ Access: [http://ycwang.info/](http://ycwang.info/)
 * Vote
 ### 2. Entity relationship diagram
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/ERdiagram.jpg)
- 
- 
- 
- 
+<br/>
+<br/>
+<br/>
 ## IV. Layered Architecture
 ![image](https://github.com/94ycwang/springboot-personalweb/blob/master/IMG/layer.jpg)
+<br/>
+<br/>
