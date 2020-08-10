@@ -1,5 +1,5 @@
 # springboot-personalweb
- A blog system. Based on Spring MVC, MySQL, and Semantic-UI.
+ A blog system. Based on SpringBoot, MySQL, and Semantic-UI.
 
 Access: [http://ycwang.info/](http://ycwang.info/)
 
