@@ -3,7 +3,7 @@
 
 Access: [http://ycwang.info/](http://ycwang.info/)
 
-## I. Requirements
+## I. Tech Stack
 
 ### 1. Frontend
 * JS framwork - JQuery
