@@ -171,7 +171,7 @@
       </div>
 
       <div class="ui inverted section divider"></div>
-      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2019-2020 Yuechun Designed by Yuechun</p>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2019-2022 Yuechun Designed by Yuechun</p>
     </div>
     <br>
     <br>
@@ -201,7 +201,7 @@
     });
 
     function loaddata() {
-      $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
+      $("#table-container").load("/admin/blogs/search",{
         title : $("[name='title']").val(),
         typeId : $("[name='typeId']").val(),
         recommend : $("[name='recommend']").prop('checked'),

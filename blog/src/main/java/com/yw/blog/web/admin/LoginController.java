@@ -42,7 +42,7 @@ public class LoginController {
         }
         else{
             attributes.addFlashAttribute("message","Incorrect email/password – please check and retry");
-            return "redirect:/";
+            return "redirect:/admin";
         }
     }
 

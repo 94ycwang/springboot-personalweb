@@ -119,7 +119,7 @@
                     <div class="ui inverted link list">
                         <a href="mailto:yc.eleanor.wang@outlook.com" class="item" th:text="#{index.email}">yc.eleanor.wang@outlook.com</a>
                         <br>
-                        <a class="item"><i class="ui inverted map pin icon"></i>Columbus, Ohio</a>
+                        <a class="item"><i class="ui inverted map pin icon"></i>Herndon, VA</a>
                     </div>
                 </div>
                 <div class="seven wide column">
@@ -131,7 +131,7 @@
             </div>
 
             <div class="ui inverted section divider"></div>
-            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2020 Designed by Yuechun</p>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright &copy; 2022 Designed by Yuechun</p>
         </div>
         <br>
         <br>
@@ -147,36 +147,36 @@
         <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
         <script th:inline="javascript">
 
-            $(document).on('click','#vote-btn',function(){
-                    if(!navigator.cookieEnabled) {
-                        document.getElementById("vote-btn").display = "none";
-                        alert("Please enable browser's Cookies to vote!")
-                    }
-                    else{
-                        var x = $("input[name='vote']:checked").val()
-                        if( x == null){
-                            x= "-1";
-                        }
-                        $("#vote-container").load(/*[[@{/vote}]]*/"",{
-                            "vote": x
-                        });
-                        document.getElementById("voted-btn").style.display = "inline";
-                        document.getElementById("vote-btn").style.display = "none";
-                    }
-                }
-            );
-            $(document).on('click','#voted-btn',function(){
-                    $("#vote-container").load(/*[[@{/vote}]]*/"",{
-                        "vote" : "-1"
-                    });
-                    document.getElementById("voted-btn").style.display = "none";
-                    document.getElementById("vote-btn").style.display = "inline";
-                }
-            );
+           $(document).on('click','#vote-btn',function(){
+                   if(!navigator.cookieEnabled) {
+                       document.getElementById("vote-btn").display = "none";
+                       alert("Please enable browser's Cookies to vote!")
+                   }
+                   else{
+                       var x = $("input[name='vote']:checked").val()
+                       if( x == null){
+                           x= "-1";
+                       }
+                       $("#vote-container").load("/vote",{
+                           "vote": x
+                       });
+                       document.getElementById("voted-btn").style.display = "inline";
+                       document.getElementById("vote-btn").style.display = "none";
+                   }
+               }
+           );
+           $(document).on('click','#voted-btn',function(){
+                   $("#vote-container").load("/vote",{
+                       "vote" : "-1"
+                   });
+                   document.getElementById("voted-btn").style.display = "none";
+                   document.getElementById("vote-btn").style.display = "inline";
+               }
+           );
 
-            $(function(){
-                $("#vote-container").load(/*[[@{/voteload}]]*/"",{});
-            });
+           $(function(){
+               $("#vote-container").load("/voteload",{});
+           });
 
         </script>
     </th:block>

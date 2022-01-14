@@ -150,6 +150,14 @@ public class BlogServiceImpl implements BlogService {
 
     @Transactional
     @Override
+    public Blog updateBlogLikes(Long id, Integer likes) {
+        Blog b = blogRepository.getOne(id);
+        b.setLikes(likes);
+        return blogRepository.save(b);
+    }
+
+    @Transactional
+    @Override
     public void deleteBlog(Long id) {
         for(Comment comment: blogRepository.getOne(id).getComments())
             commentRepository.delete(comment);

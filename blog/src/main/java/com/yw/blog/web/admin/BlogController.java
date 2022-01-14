@@ -72,7 +72,6 @@ public class BlogController {
         return INPUT;
     }
 
-
     @PostMapping("/blogs")
     public String post(Blog blog, HttpSession session, RedirectAttributes attributes) throws ParseException {
         blog.setUser((User)session.getAttribute("user"));

@@ -46,30 +46,25 @@ public class IndexController {
         model.addAttribute("types", typeService.listType(6));
         model.addAttribute("tags", tagService.listTag(15));
         model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(4));
-        //        int i =9/0;
-        //        String blog = null;
-        //        if(blog == null){
-        //            throw new NotFoundException("Not Found!");
-        //        }
-        //        System.out.println("------------index--------------");
+
         return "index";
     }
 
     @PostMapping("/search")
     public String search(@PageableDefault(size=5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                         @RequestParam String query, Model model){
+                         @RequestParam String query, Model model) {
 
         model.addAttribute("page", blogService.listBlog(query,pageable));
         model.addAttribute("query", query);
         return "search";
     }
 
-    private boolean likedState(HttpServletRequest request, Long id){
+    private boolean likedState(HttpServletRequest request, Long id) {
         boolean liked = false;
         Cookie[] cookies =  request.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("session"+id) && cookie.getValue()!= null){
+                if(cookie.getName().equals("session"+id) && cookie.getValue()!= null) {
                     liked = true;
                     break;
                 }
@@ -79,7 +74,7 @@ public class IndexController {
     }
 
     @GetMapping("/blog/{id}")
-    public String blog(@PathVariable Long id, Model model, HttpServletRequest request){
+    public String blog(@PathVariable Long id, Model model, HttpServletRequest request) {
 
         boolean liked = this.likedState(request,id);
         model.addAttribute("liked", liked);
@@ -90,31 +85,33 @@ public class IndexController {
 
     @PostMapping(value = "/blog/{id}/like")
     public  String likeRefresh(@PathVariable Long id, Model model,
-                              HttpServletRequest request, HttpServletResponse response){
+                              HttpServletRequest request, HttpServletResponse response) {
         Blog blog = blogService.getBlog(id);
         boolean liked = this.likedState(request,id);
+        int likes;
 
-
-        if(!liked){
+        if(!liked) {
             Cookie c = new Cookie("session"+id,"CookieInfo");
-            c.setMaxAge(100*24*60*60);
+            c.setMaxAge(100 * 24 * 60 * 60);
             response.addCookie(c);
+
+            blogService.updateBlogLikes(id, blog.getLikes() + 1);
             model.addAttribute("liked", true);
-            blog.setLikes(blog.getLikes()+1);
-        } else{
+
+        } else {
             Cookie c = new Cookie("session"+id,null);
             c.setMaxAge(0);
             response.addCookie(c);
+
+            blogService.updateBlogLikes(id, blog.getLikes() - 1);
             model.addAttribute("liked", false);
-            blog.setLikes(blog.getLikes()-1);
         }
 
-        blogService.updateBlog(id, blog);
         model.addAttribute("blog", blogService.getAndConvert(id));
         return "blog::likeRefresh";
     }
 
-    private boolean voteState(HttpServletRequest request){
+    private boolean voteState(HttpServletRequest request) {
         boolean voted = false;
         Cookie[] cookies =  request.getCookies();
         if(cookies != null){
